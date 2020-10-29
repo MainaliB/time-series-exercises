@@ -17,6 +17,7 @@ def prep_sales_df(df):
     df = df.set_index('sale_date').sort_index()
     df['month'] = df.index.month_name()
     df['day']= df.index.day_name()
-    df['sales_total'] = df.sale_amount * df.item_price
+    df.rename(columns ={'sale_amount':'quantity'}, inplace = True)
+    df['sales_total'] = df.quantity * df.item_price
     
     return df
